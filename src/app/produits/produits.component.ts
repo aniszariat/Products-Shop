@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { produit } from '../model.ts/produit';
+import { ProduitService } from '../services/produit.service';
 
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
-  styleUrls: ['./produits.component.css']
+  styleUrls: ['./produits.component.css'],
 })
 export class ProduitsComponent implements OnInit {
-  produits:string[]
-  
-  constructor() {this.produits = ["PC Asus", "Imprimante Epson", "Tablette Samsung"]; }
+  produits: produit[];
 
-  ngOnInit(): void {
+  constructor(private prodServ: ProduitService) {
+    this.produits = this.prodServ.lsiteProduits();
   }
 
+  ngOnInit(): void {}
 }
